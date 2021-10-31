@@ -9,7 +9,11 @@ const PORT = 3001;
 app.use(express.static('public'));
 
 // Create path
-app.get('/paths', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
+);
+
+// Route everything else to index.html file
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
 // Bring server to life
