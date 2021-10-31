@@ -1,6 +1,6 @@
 // Include necessary packages
 const express = require('express');
-const { fstat } = require('fs');
+const fs = require('fs');
 const path = require('path');
 const uuid = require('uuid');
 const allNotes = require('./db/db.json');
@@ -34,14 +34,14 @@ app.post('/api/notes', (req, res) => {
         };
 
         //Obtain existing notes
-        fs.readFile('/.db/reviews.json', 'utf8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
                 const parsedNotes = JSON.parse(data);
-                parsedNotes.push(newNotes);
+                parsedNotes.push(newNote);
                 fs.writeFile(
-                    './db/reviews.json',
+                    './db/db.json',
                     JSON.stringify(parsedNotes, null, 4),
                     (writeErr) => 
                         writeErr
