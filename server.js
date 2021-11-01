@@ -3,6 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const uuid = require('uuid');
+const util = require('util');
 const allNotes = require('./db/db.json');
 
 const app = express();
@@ -13,13 +14,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Create readFrom function based on in-class activity
+const readFrom = util.promisify(fs.readFile);
+
 // Create path to notes app
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
 
 // Return saved notes as JSON file
 app.get('/api/notes', (req, res) => {
-    return res.json(allNotes);
+    readFrom('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 // Post request to add a new note
@@ -57,9 +61,9 @@ app.post('/api/notes', (req, res) => {
         };
 
         console.log(response);
-        res.status(201).json(response);
+        res.json(response);
     } else {
-        res.status(500).json('Error');
+        res.json('Error');
     }
 });
 

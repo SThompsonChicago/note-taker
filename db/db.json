@@ -4,18 +4,8 @@
         "text": "Test text"
     },
     {
-        "title": "H",
-        "text": "A",
-        "note_id": "68c48322-40d6-4c22-ae0a-fbd8991156cb"
-    },
-    {
-        "title": "A",
-        "text": "B",
-        "note_id": "645a9856-47db-4064-b959-8a678023868a"
-    },
-    {
-        "title": "Hey",
-        "text": "A",
-        "note_id": "9888c75b-132e-4c9c-abf9-9d5bf104b061"
+        "title": "Another test",
+        "text": "testing",
+        "note_id": "d62128ae-883a-4137-b659-8cd2602f72ca"
     }
 ]
